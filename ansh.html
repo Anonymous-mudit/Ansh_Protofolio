@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ansh Sharma — HR &amp; Content Creation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg:#12141a;
+  --bg-panel:#1a1d25;
+  --paper:#f2efe8;
+  --hr:#5b9a8b;
+  --hr-dim:#3d6b60;
+  --creative:#e8623c;
+  --creative-dim:#a8482c;
+  --text:#ece9e1;
+  --text-dim:#8f8d86;
+  --line:#2b2e37;
+  --both:#c7a15a;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Space Grotesk', sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+h1,h2,h3{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  line-height:1.1;
+}
+
+a{color:inherit;}
+
+.wrap{
+  max-width:960px;
+  margin:0 auto;
+  padding:0 28px;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  padding:90px 0 70px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:48px;
+  flex-wrap:wrap;
+}
+
+.hero-text{
+  flex:1 1 440px;
+  min-width:0;
+}
+
+.hero-figure-wrapper {
+  flex: 0 0 auto;
+  position: relative;
+  perspective: 1200px;
+  margin: 0 auto;
+}
+
+.hero-figure-aura {
+  position: absolute;
+  inset: -14px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--hr), var(--creative));
+  opacity: 0.35;
+  filter: blur(25px);
+  transform: translateZ(-30px);
+  transition: opacity 0.5s ease, filter 0.5s ease;
+  pointer-events: none;
+}
+
+.hero-figure-wrapper:hover .hero-figure-aura {
+  opacity: 0.65;
+  filter: blur(30px);
+}
+
+.hero-figure {
+  width: 260px;
+  height: 320px;
+  max-width: 100%;
+  position: relative;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(135deg, rgba(91,154,139,.3), rgba(232,98,60,.3));
+  padding: 4px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(91,154,139,0.2);
+  cursor: pointer;
+}
+
+.hero-figure .photo-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.hero-figure img, .hero-figure video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  filter: grayscale(0.05) contrast(1.04);
+  transform: translateZ(25px) scale(1.08);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
+  will-change: transform;
+}
+
+.hero-figure:hover img, .hero-figure:hover video {
+  transform: translateZ(45px) scale(1.15);
+  filter: grayscale(0) contrast(1.08);
+}
+
+.hero-figure::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 10px;
+  pointer-events: none;
+  box-shadow: inset 0 -70px 60px -30px rgba(18,20,26,.85);
+  transform: translateZ(30px);
+}
+
+.hero-figure .glare-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 75%);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transform: translateZ(50px);
+  will-change: opacity, background;
+}
+
+/* 3D Card & Tag Interactive Styles */
+
+@media (max-width:720px){
+  .hero{flex-direction:column-reverse; align-items:flex-start;}
+  .hero-figure-wrapper{width:220px; height:270px; margin:0 auto;}
+  .hero-figure{width:100%; height:100%;}
+}
+
+.hero-kicker{
+  font-size:15px;
+  color:var(--text-dim);
+  max-width:480px;
+  margin-bottom:28px;
+}
+
+.hero h1{
+  font-size:clamp(42px, 8vw, 76px);
+  letter-spacing:-0.01em;
+}
+
+.hero h1 .accent-hr{color:var(--hr);}
+.hero h1 .accent-cr{color:var(--creative);}
+
+.hero-sub{
+  margin-top:22px;
+  max-width:540px;
+  font-size:17px;
+  color:#c7c4bb;
+}
+
+.hero-contact{
+  margin-top:36px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  font-size:14px;
+  color:var(--text-dim);
+}
+
+.hero-contact a{
+  border-bottom:1px solid var(--line);
+  padding-bottom:2px;
+  transition:border-color .2s, color .2s;
+}
+.hero-contact a:hover{color:var(--text); border-color:var(--text);}
+
+/* ---------- TOGGLE ---------- */
+
+.toggle-row{
+  display:flex;
+  gap:0;
+  margin-top:40px;
+  border:1px solid var(--line);
+  width:fit-content;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.toggle-btn{
+  font-family:'Space Grotesk', sans-serif;
+  font-size:14px;
+  font-weight:500;
+  background:transparent;
+  border:none;
+  color:var(--text-dim);
+  padding:10px 22px;
+  cursor:pointer;
+  transition:background .2s, color .2s;
+}
+
+.toggle-btn.active[data-track="hr"]{background:var(--hr); color:#0d1512;}
+.toggle-btn.active[data-track="creative"]{background:var(--creative); color:#1a0d07;}
+.toggle-btn.active[data-track="both"]{background:var(--both); color:#1a1508;}
+
+/* ---------- SECTION LABELS ---------- */
+
+.section{
+  padding:64px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:36px;
+  gap:16px;
+}
+
+.section-head h2{
+  font-size:28px;
+}
+
+.section-head span{
+  font-size:13px;
+  color:var(--text-dim);
+  white-space:nowrap;
+}
+
+/* ---------- TIMELINE ---------- */
+
+.timeline{
+  position:relative;
+  padding-left:26px;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:6px;
+  bottom:6px;
+  width:1px;
+  background:var(--line);
+}
+
+.entry{
+  position:relative;
+  padding-bottom:34px;
+}
+.entry:last-child{padding-bottom:0;}
+
+.entry::before{
+  content:"";
+  position:absolute;
+  left:-26px;
+  top:5px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  border:2px solid var(--bg);
+  background:var(--text-dim);
+}
+
+.entry[data-track="hr"]::before{background:var(--hr);}
+.entry[data-track="creative"]::before{background:var(--creative);}
+
+.entry-date{
+  font-size:13px;
+  color:var(--text-dim);
+  margin-bottom:4px;
+}
+
+.entry-role{
+  font-family:'Fraunces', serif;
+  font-size:19px;
+  font-weight:600;
+  margin-bottom:2px;
+}
+
+.entry-org{
+  font-size:14px;
+  color:var(--text-dim);
+  margin-bottom:10px;
+}
+
+.entry-org .badge{
+  display:inline-block;
+  font-size:11px;
+  padding:2px 9px;
+  border-radius:999px;
+  margin-left:8px;
+  font-family:'Space Grotesk',sans-serif;
+}
+.entry[data-track="hr"] .badge{background:rgba(91,154,139,.15); color:var(--hr);}
+.entry[data-track="creative"] .badge{background:rgba(232,98,60,.15); color:var(--creative);}
+
+.entry ul{
+  padding-left:18px;
+  color:#c7c4bb;
+  font-size:15px;
+}
+.entry li{margin-bottom:6px;}
+
+/* ---------- SKILLS ---------- */
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+@media (max-width:640px){
+  .skills-grid{grid-template-columns:1fr;}
+}
+
+.skill-col h3{
+  font-size:15px;
+  font-family:'Space Grotesk', sans-serif;
+  font-weight:600;
+  margin-bottom:16px;
+  padding-bottom:10px;
+  border-bottom:2px solid var(--line);
+}
+
+.skill-col[data-track="hr"] h3{border-color:var(--hr); color:var(--hr);}
+.skill-col[data-track="creative"] h3{border-color:var(--creative); color:var(--creative);}
+
+.skill-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.skill-tags span{
+  font-size:13px;
+  padding:6px 12px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  color:#d4d1c8;
+}
+
+/* ---------- PROJECT / HIGHLIGHT ---------- */
+
+.highlight-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+@media (max-width:640px){
+  .highlight-grid{grid-template-columns:1fr;}
+}
+
+.highlight-card{
+  background:var(--bg-panel);
+  border:1px solid var(--line);
+  border-left:3px solid var(--text-dim);
+  padding:24px;
+}
+
+.highlight-card[data-track="hr"]{border-left-color:var(--hr);}
+.highlight-card[data-track="creative"]{border-left-color:var(--creative);}
+
+.highlight-num{
+  font-family:'Fraunces', serif;
+  font-size:32px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+.highlight-card[data-track="hr"] .highlight-num{color:var(--hr);}
+.highlight-card[data-track="creative"] .highlight-num{color:var(--creative);}
+
+.highlight-label{
+  font-size:14px;
+  color:var(--text-dim);
+}
+
+.highlight-body{
+  margin-top:16px;
+  font-size:15px;
+  color:#c7c4bb;
+}
+
+/* ---------- EDUCATION / FOOTER ---------- */
+
+.edu-row{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+}
+.edu-row:last-child{border-bottom:none;}
+
+.edu-degree{font-family:'Fraunces', serif; font-size:17px;}
+.edu-meta{color:var(--text-dim); font-size:14px;}
+
+footer{
+  padding:50px 0 70px;
+  text-align:center;
+}
+
+footer p{
+  color:var(--text-dim);
+  font-size:14px;
+}
+
+footer a{
+  color:var(--text);
+  border-bottom:1px solid var(--line);
+}
+
+.hide{display:none !important;}
+
+/* ---------- 3D COMPONENT STYLES & INTERACTIVE HOVER ---------- */
+body {
+  overflow-x: hidden;
+}
+
+.wrap {
+  perspective: 1200px;
+}
+
+/* Smooth Entrance Reveal (Native Smooth Scrolling, No Scroll Lock) */
+.scroll-3d {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-3d.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3D Highlight Cards */
+.highlight-grid {
+  perspective: 1000px;
+}
+
+.highlight-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--text-dim);
+  border-radius: 12px;
+  padding: 24px;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.highlight-card[data-track="hr"] { border-left-color: var(--hr); }
+.highlight-card[data-track="creative"] { border-left-color: var(--creative); }
+
+.highlight-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 25px rgba(91,154,139,0.15);
+}
+
+.highlight-num {
+  font-family: 'Fraunces', serif;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  transform: translateZ(25px);
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.highlight-card:hover .highlight-num {
+  transform: translateZ(35px) scale(1.05);
+}
+
+.highlight-label {
+  font-size: 14px;
+  color: var(--text-dim);
+  transform: translateZ(15px);
+}
+
+.highlight-body {
+  margin-top: 16px;
+  font-size: 15px;
+  color: #c7c4bb;
+  transform: translateZ(10px);
+}
+
+/* 3D Timeline Entries */
+.timeline {
+  perspective: 1000px;
+}
+
+.entry {
+  position: relative;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  background: rgba(26, 29, 37, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.entry:last-child { margin-bottom: 0; }
+
+.entry:hover {
+  background: rgba(26, 29, 37, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+  transform: perspective(800px) translateZ(15px) translateX(6px);
+}
+
+.entry::before {
+  left: -20px;
+  top: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entry:hover::before {
+  transform: scale(1.3);
+  box-shadow: 0 0 12px var(--hr);
+}
+
+.entry[data-track="creative"]:hover::before {
+  box-shadow: 0 0 12px var(--creative);
+}
+
+.entry-org .badge {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-left: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  transform: translateZ(15px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.entry:hover .badge {
+  transform: translateZ(25px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* 3D Skills Grid & Tags */
+.skills-grid {
+  perspective: 1000px;
+}
+
+.skill-col {
+  background: rgba(26, 29, 37, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 24px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-col:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  transform: perspective(800px) translateZ(12px);
+}
+
+.skill-tags span {
+  display: inline-block;
+  font-size: 13px;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #d4d1c8;
+  background: rgba(18, 20, 26, 0.6);
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+}
+
+.skill-tags span:hover {
+  transform: perspective(500px) translateZ(18px) scale(1.08);
+  border-color: var(--text);
+  color: #fff;
+  background: rgba(91, 154, 139, 0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 12px rgba(91,154,139,0.3);
+}
+
+.skill-col[data-track="creative"] .skill-tags span:hover {
+  background: rgba(232, 98, 60, 0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 12px rgba(232,98,60,0.3);
+}
+
+/* 3D Education Rows */
+.edu-row {
+  padding: 20px 16px;
+  border-radius: 10px;
+  border-bottom: 1px solid var(--line);
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.edu-row:hover {
+  background: rgba(26, 29, 37, 0.5);
+  transform: perspective(600px) translateZ(12px) translateX(6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-kicker">Portfolio · Gurgaon &amp; Kasganj, Uttar Pradesh, India</div>
+      <h1>Ansh Sharma<br><span class="accent-hr">HR Executive</span> &amp; <span class="accent-cr">Video Editor</span></h1>
+      <p class="hero-sub">Two working lives running in parallel since 2024 — building people-first HR operations on one side, and 5+ years of short-form video storytelling for Instagram and YouTube on the other.</p>
+
+      <div class="hero-contact">
+        <a href="mailto:sharmaa3011@gmail.com">sharmaa3011@gmail.com</a>
+        <a href="tel:+919761164530">+91 97611 64530</a>
+        <a href="https://www.linkedin.com/in/ansh-sharma-49a182321" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+
+      <div class="toggle-row" id="toggle-row">
+        <button class="toggle-btn active" data-track="both">Both</button>
+        <button class="toggle-btn" data-track="hr">HR</button>
+        <button class="toggle-btn" data-track="creative">Content Creation</button>
+      </div>
+    </div>
+
+    <div class="hero-figure-wrapper">
+      <div class="hero-figure-aura"></div>
+      <div class="hero-figure" id="hero-figure">
+        <div class="photo-frame">
+          <video src="ansh.mp4" autoplay loop muted playsinline poster="ansh.jpeg"></video>
+          <div class="glare-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span>Aug 2024 — Present</span>
+    </div>
+
+    <div class="timeline">
+
+      <div class="entry" data-track="hr">
+        <div class="entry-date">Dec 2025 — Present</div>
+        <div class="entry-role">HR Executive</div>
+        <div class="entry-org">Adtomate Solutions Pvt. Ltd. (Sociovia AI) <span class="badge">HR</span></div>
+        <ul>
+          <li>Runs end-to-end recruitment for technical and non-technical roles — AI developers, marketing, sales, operations — against business growth targets.</li>
+          <li>Owns the full hiring lifecycle: sourcing, screening, interview coordination, salary negotiation and offer roll-out.</li>
+          <li>Writes job descriptions and KRAs aligned to organizational goals, and coordinates background verification with external vendors.</li>
+          <li>Maintains HRMS records and documentation compliance; runs employee engagement through leadership townhalls.</li>
+        </ul>
+      </div>
+
+      <div class="entry" data-track="hr">
+        <div class="entry-date">Oct 2025 — Dec 2025</div>
+        <div class="entry-role">HR Executive Trainee</div>
+        <div class="entry-org">Engineers India Limited (EIL) <span class="badge">HR</span></div>
+        <ul>
+          <li>Assisted with manpower planning and recruitment coordination for project-based and permanent staffing.</li>
+          <li>Supported job posting, screening, interview scheduling and documentation management.</li>
+          <li>Helped draft job descriptions and KRAs with department heads, and tracked hiring against budget.</li>
+        </ul>
+      </div>
+
+      <div class="entry" data-track="hr">
+        <div class="entry-date">Jan 2025 — May 2025</div>
+        <div class="entry-role">Trainee, Human Resources</div>
+        <div class="entry-org">PeopleStrong <span class="badge">HR</span></div>
+        <ul>
+          <li>Onboarded 50+ employees within a single quarter, managing attendance, leave, timesheet and asset records.</li>
+          <li>Ran background verification and confirmation processes end-to-end with external vendors.</li>
+          <li>Drafted relieving, experience, bonafide, VISA and NOC letters; resolved employee tickets within a 48-hour turnaround.</li>
+        </ul>
+      </div>
+
+      <div class="entry" data-track="creative">
+        <div class="entry-date">2020 — Present · 5+ years</div>
+        <div class="entry-role">Video Editor &amp; Content Creator</div>
+        <div class="entry-org">Independent — Instagram &amp; YouTube <span class="badge">Creative</span></div>
+        <ul>
+          <li>Plans, shoots and edits short-form and social-first video across Instagram Reels and YouTube.</li>
+          <li>Builds content around platform trends and audience behaviour, from concept through final cut.</li>
+          <li>Edited 50+ promotional and advertisement videos for the astrology team of Pandit Chandra Shekar Sharma.</li>
+        </ul>
+      </div>
+
+      <div class="entry" data-track="hr">
+        <div class="entry-date">Aug 2024 — Nov 2024</div>
+        <div class="entry-role">HR Intern</div>
+        <div class="entry-org">Krishi Jagran <span class="badge">HR</span></div>
+        <ul>
+          <li>Supported manpower planning, budgeting and lateral hiring; prepared a staffing manual covering the full hiring cycle.</li>
+          <li>Helped run the performance appraisal cycle and communicated KRAs to teams.</li>
+          <li>Organized employee engagement activities — leadership connects, open houses, cultural events.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span>By track</span>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-col" data-track="hr">
+        <h3>HR &amp; People Operations</h3>
+        <div class="skill-tags">
+          <span>Recruitment &amp; Selection</span>
+          <span>Onboarding &amp; Exit</span>
+          <span>HR Operations</span>
+          <span>Employee Engagement</span>
+          <span>KRA &amp; JD Drafting</span>
+          <span>Background Verification</span>
+          <span>HRMS Administration</span>
+          <span>Grievance Redressal</span>
+          <span>Database Management</span>
+        </div>
+      </div>
+      <div class="skill-col" data-track="creative">
+        <h3>Video &amp; Content</h3>
+        <div class="skill-tags">
+          <span>Video Editing</span>
+          <span>Short-Form Video</span>
+          <span>Instagram Reels</span>
+          <span>YouTube Content</span>
+          <span>Promotional Videos</span>
+          <span>Social Storytelling</span>
+          <span>Trend Research</span>
+          <span>Content Planning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="highlights">
+    <div class="section-head">
+      <h2>In numbers</h2>
+      <span>Career highlights</span>
+    </div>
+
+    <div class="highlight-grid">
+      <div class="highlight-card" data-track="hr">
+        <div class="highlight-num">50+</div>
+        <div class="highlight-label">Employees onboarded in one quarter</div>
+        <div class="highlight-body">At PeopleStrong, managed attendance, leave, confirmation and background-verification workflows for over fifty new hires in a single quarter.</div>
+      </div>
+      <div class="highlight-card" data-track="creative">
+        <div class="highlight-num">50+</div>
+        <div class="highlight-label">Promotional videos edited</div>
+        <div class="highlight-body">Produced and edited over fifty promotional and advertisement videos for an astrology brand's social channels, from concept to final cut.</div>
+      </div>
+      <div class="highlight-card" data-track="hr">
+        <div class="highlight-num">48hr</div>
+        <div class="highlight-label">Employee ticket turnaround</div>
+        <div class="highlight-body">Resolved attendance, leave, payroll and timesheet queries through a ticket-based system within a 48-hour SLA.</div>
+      </div>
+      <div class="highlight-card" data-track="creative">
+        <div class="highlight-num">5+ yrs</div>
+        <div class="highlight-label">Content creation experience</div>
+        <div class="highlight-body">Five-plus years editing and producing short-form video for Instagram and YouTube alongside a full-time HR career.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="section-head">
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-degree">BBA, Raja Mahendra Pratap Singh State University</div>
+      <div class="edu-meta">2021 — 2024, Aligarh</div>
+    </div>
+    <div class="edu-row">
+      <div class="edu-degree">Higher Secondary Education (Class 12)</div>
+      <div class="edu-meta">SKM Inter College, Kasganj — 2021</div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Open to opportunities in HR &amp; people operations, and video editing &amp; content creation.</p>
+    <p style="margin-top:8px;"><a href="mailto:sharmaa3011@gmail.com">sharmaa3011@gmail.com</a> · <a href="tel:+919761164530">+91 97611 64530</a></p>
+  </footer>
+
+</div>
+
+<script>
+const buttons = document.querySelectorAll('.toggle-btn');
+const trackedEls = document.querySelectorAll('[data-track]');
+
+function setTrack(track){
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.track === track));
+  trackedEls.forEach(el => {
+    if(el.classList.contains('toggle-btn')) return;
+    const t = el.dataset.track;
+    if(track === 'both' || t === track){
+      el.classList.remove('hide');
+    } else {
+      el.classList.add('hide');
+    }
+  });
+}
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => setTrack(btn.dataset.track));
+});
+
+/* ---------- 3D INTERACTIVE TILT & BREATHING ANIMATION ---------- */
+(function setup3DHeroImage() {
+  const wrapper = document.querySelector('.hero-figure-wrapper');
+  const figure = document.querySelector('.hero-figure');
+  const glare = document.querySelector('.glare-overlay');
+  
+  if (!wrapper || !figure) return;
+
+  let mouseInside = false;
+  let currentX = 0, currentY = 0, currentScale = 1;
+  let targetX = 0, targetY = 0, targetScale = 1;
+  let glareX = 50, glareY = 50, targetGlareOpacity = 0, currentGlareOpacity = 0;
+
+  // Idle floating time tracking
+  let floatTime = 0;
+
+  function update() {
+    floatTime += 0.025;
+
+    if (!mouseInside) {
+      // Smooth continuous 3D floating / breathing tilt
+      targetX = Math.sin(floatTime) * 5;
+      targetY = Math.cos(floatTime * 0.7) * 7;
+      targetScale = 1 + Math.sin(floatTime * 0.5) * 0.015;
+      targetGlareOpacity = 0.12 + Math.sin(floatTime * 0.5) * 0.08;
+      glareX = 50 + Math.sin(floatTime) * 20;
+      glareY = 50 + Math.cos(floatTime * 0.8) * 20;
+    }
+
+    // Interpolation (lerp) for silky smooth movement
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+    currentScale += (targetScale - currentScale) * 0.08;
+    currentGlareOpacity += (targetGlareOpacity - currentGlareOpacity) * 0.08;
+
+    // Apply 3D perspective rotation
+    figure.style.transform = `rotateX(${currentX}deg) rotateY(${currentY}deg) scale3d(${currentScale}, ${currentScale}, ${currentScale})`;
+
+    // Dynamic shadow shift based on 3D angle
+    const shadowX = -currentY * 0.9;
+    const shadowY = currentX * 0.9 + 20;
+    figure.style.boxShadow = `${shadowX}px ${shadowY}px 40px rgba(0, 0, 0, 0.65), ${shadowX * 0.4}px ${shadowY * 0.4}px 18px rgba(91, 154, 139, 0.25)`;
+
+    // Apply glare overlay reflection
+    if (glare) {
+      glare.style.opacity = currentGlareOpacity.toFixed(3);
+      glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 70%)`;
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  wrapper.addEventListener('mouseenter', () => {
+    mouseInside = true;
+    targetScale = 1.06;
+    targetGlareOpacity = 0.6;
+  });
+
+  wrapper.addEventListener('mousemove', (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Max 3D tilt rotation up to ~22 degrees
+    targetX = -((y - centerY) / centerY) * 22;
+    targetY = ((x - centerX) / centerX) * 22;
+
+    glareX = (x / rect.width) * 100;
+    glareY = (y / rect.height) * 100;
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    mouseInside = false;
+    targetScale = 1;
+    targetGlareOpacity = 0.1;
+  });
+
+  // Mobile Gyroscope support
+  if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', (e) => {
+      if (!mouseInside && e.beta !== null && e.gamma !== null) {
+        const tiltX = Math.max(-20, Math.min(20, e.beta - 45));
+        const tiltY = Math.max(-20, Math.min(20, e.gamma));
+        targetX = tiltX * 0.6;
+        targetY = tiltY * 0.6;
+      }
+    });
+  }
+
+  // Start 3D loop
+  update();
+})();
+
+/* ---------- 3D INTERACTIVE TILT FOR HIGHLIGHT CARDS ---------- */
+(function setup3DCardTilt() {
+  const cards = document.querySelectorAll('.highlight-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = -((y - centerY) / centerY) * 14;
+      const rotateY = ((x - centerX) / centerX) * 14;
+
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(18px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
+  });
+})();
+
+/* ---------- 3D COMPONENT ENTRANCE REVEAL ---------- */
+(function setupComponentReveal() {
+  const targets = document.querySelectorAll('.hero-text, .hero-figure-wrapper, .section-head, .entry, .skill-col, .highlight-card, .edu-row, footer');
+
+  targets.forEach((el, index) => {
+    el.classList.add('scroll-3d');
+    if (el.classList.contains('entry') || el.classList.contains('highlight-card') || el.classList.contains('edu-row')) {
+      el.style.transitionDelay = `${(index % 3) * 0.08}s`;
+    }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -20px 0px'
+  });
+
+  targets.forEach(el => observer.observe(el));
+})();
+</script>
+
+</body>
+</html>
