@@ -1,0 +1,11 @@
+{
+  "name": "ansh-sharma-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ansh Sharma — HR Executive & Video Editor Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  }
+}
