@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ansh Sharma — HR &amp; Content Creation</title>
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -441,7 +443,27 @@ footer a{
 
 .hide{display:none !important;}
 
-/* ---------- 3D COMPONENT STYLES & INTERACTIVE HOVER ---------- */
+/* ---------- LENIS & GPU SMOOTH SCROLL STYLES ---------- */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--hr), var(--creative));
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.08s ease-out;
+  box-shadow: 0 0 10px var(--hr);
+}
+
 body {
   overflow-x: hidden;
 }
@@ -450,17 +472,18 @@ body {
   perspective: 1200px;
 }
 
-/* Smooth Entrance Reveal (Native Smooth Scrolling, No Scroll Lock) */
+/* Smooth Entrance Reveal (Native Smooth Scrolling with Inertia) */
 .scroll-3d {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
 .scroll-3d.in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 /* 3D Highlight Cards */
@@ -636,6 +659,8 @@ body {
 </style>
 </head>
 <body>
+
+<div class="scroll-progress-bar" id="scroll-progress"></div>
 
 <div class="wrap">
 
@@ -991,6 +1016,37 @@ buttons.forEach(btn => {
   });
 
   targets.forEach(el => observer.observe(el));
+})();
+
+/* ---------- LENIS ULTRA-SMOOTH INERTIAL SCROLL ENGINE ---------- */
+(function setupLenisSmoothScroll() {
+  if (typeof Lenis === 'undefined') return;
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1.0,
+    touchMultiplier: 1.8,
+    infinite: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Top scroll progress bar
+  const progressBar = document.getElementById('scroll-progress');
+  if (progressBar) {
+    lenis.on('scroll', (e) => {
+      const scrolled = (e.scroll / (e.limit || 1)) * 100;
+      progressBar.style.width = scrolled + '%';
+    });
+  }
 })();
 </script>
 
